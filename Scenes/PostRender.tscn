@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://bx4phcteeknb0"]
+
+[ext_resource type="Script" path="res://Scenes/PostRender.gd" id="1_x02kn"]
+[ext_resource type="Shader" path="res://Scenes/PostRender.gdshader" id="2_scgpo"]
+[ext_resource type="PackedScene" uid="uid://beuygc2mv8n3k" path="res://Scenes/Main.tscn" id="3_owkpa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iwhuk"]
+shader = ExtResource("2_scgpo")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dak7w"]
+shader = ExtResource("2_scgpo")
+
+[node name="PostRender" type="Node2D"]
+script = ExtResource("1_x02kn")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="L" type="Panel" parent="Panel"]
+material = SubResource("ShaderMaterial_iwhuk")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="R" type="Panel" parent="Panel"]
+material = SubResource("ShaderMaterial_dak7w")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Main" parent="." instance=ExtResource("3_owkpa")]
