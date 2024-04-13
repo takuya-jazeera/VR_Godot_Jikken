@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://beuygc2mv8n3k"]
+[gd_scene load_steps=8 format=3 uid="uid://beuygc2mv8n3k"]
 
 [ext_resource type="Script" path="res://Scenes/MeshInstance3D.gd" id="1_3bxel"]
+[ext_resource type="Shader" path="res://Scenes/phong.gdshader" id="1_jeg8w"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7ldiq"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -14,7 +15,13 @@ background_mode = 2
 sky = SubResource("Sky_bt85u")
 tonemap_mode = 2
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_70fgw"]
+render_priority = 0
+shader = ExtResource("1_jeg8w")
+shader_parameter/color_in = null
+
 [sub_resource type="BoxMesh" id="BoxMesh_rucvd"]
+material = SubResource("ShaderMaterial_70fgw")
 
 [node name="Main" type="Node3D"]
 
@@ -28,12 +35,12 @@ shadow_enabled = true
 [node name="ViewL" type="SubViewport" parent="."]
 
 [node name="CL" type="Camera3D" parent="ViewL"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0, 0)
 
 [node name="ViewR" type="SubViewport" parent="."]
 
 [node name="CR" type="Camera3D" parent="ViewR"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.94876)

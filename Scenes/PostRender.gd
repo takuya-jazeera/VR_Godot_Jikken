@@ -8,7 +8,7 @@ func _ready():
 	panel.get_node("L").size = Vector2i(300,300)
 	panel.get_node("L").position = Vector2i(100,100)
 	panel.get_node("R").size = Vector2i(300,300)
-	panel.get_node("R").position = Vector2i(440,100)
+	panel.get_node("R").position = Vector2i(420,100)
 	
 	panel.get_node("L").material.set_shader_parameter("tex",$Main/ViewL.get_texture())
 	panel.get_node("R").material.set_shader_parameter("tex",$Main/ViewR.get_texture())
