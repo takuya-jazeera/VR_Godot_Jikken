@@ -30,3 +30,5 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Main" parent="." instance=ExtResource("3_owkpa")]
+
+[connection signal="draw" from="." to="." method="_on_draw"]
