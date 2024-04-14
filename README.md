@@ -19,3 +19,5 @@ Create a VR framework with Godot Engine.
 # Note
 
 とりあえず、デバッグ中は並行視で確認する
+
++ ステレオグラムの見方はWikipediaを参照のこと-> [ステレオグラム](https://ja.wikipedia.org/wiki/%E3%82%B9%E3%83%86%E3%83%AC%E3%82%AA%E3%82%B0%E3%83%A9%E3%83%A0)
