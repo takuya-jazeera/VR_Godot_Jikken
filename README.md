@@ -15,6 +15,16 @@ Create a VR framework with Godot Engine.
     - Make Education resource not only for fun but for my job
     - Check due-diligence before forking this project 
 
+# What I have learned
+
++ The distance of human eye is around 62mm
++ Acceleration is detected through Inertial Measurement Unit(IMU) 
+    - [Intertial measurement unit](https://en.wikipedia.org/wiki/Inertial_measurement_unit)
++ Acceleration is measured as change in capacitance. Through D-Sigma ADC unit.
+    - What is D-S ADC? How does it work?
+    - How the angular velocity is measured?
++ I need to know how to convert Euler angle onto single quaternion
+    - This can be simple but what is the best way?
 
 # Note
 
