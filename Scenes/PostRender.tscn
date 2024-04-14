@@ -31,4 +31,14 @@ offset_bottom = 40.0
 
 [node name="Main" parent="." instance=ExtResource("3_owkpa")]
 
+[node name="Label" type="Label" parent="."]
+offset_left = 11.0
+offset_top = 8.0
+offset_right = 274.0
+offset_bottom = 109.0
+text = "1. 人間の目の距離は平均して62ミリ
+2. 上下キーでカメラをZ方向に移動
+3. デバッグにはステレオグラムの手法をとる
+4. 加速度センサーのしくみを勉強する"
+
 [connection signal="draw" from="." to="." method="_on_draw"]

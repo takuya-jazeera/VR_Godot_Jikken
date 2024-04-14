@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://beuygc2mv8n3k"]
+[gd_scene load_steps=11 format=3 uid="uid://beuygc2mv8n3k"]
 
 [ext_resource type="Script" path="res://MeshInstance3D.gd" id="1_3bxel"]
 [ext_resource type="Shader" path="res://Shaders/phong.gdshader" id="1_jeg8w"]
+[ext_resource type="Script" path="res://Scripts/Main.gd" id="1_lbbga"]
 [ext_resource type="PackedScene" uid="uid://dqhijge300446" path="res://Scenes/TextScroll.tscn" id="3_gr3bs"]
 [ext_resource type="PackedScene" uid="uid://b0tx8pjfkjkrs" path="res://Models/qubicle.glb" id="4_83u2h"]
 
@@ -26,6 +27,7 @@ shader_parameter/color_in = null
 material = SubResource("ShaderMaterial_70fgw")
 
 [node name="Main" type="Node3D"]
+script = ExtResource("1_lbbga")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_5ew1h")
