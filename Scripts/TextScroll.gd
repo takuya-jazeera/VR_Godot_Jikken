@@ -13,4 +13,6 @@ func _ready():
 func _process(delta):
 	t += delta 
 	position = Vector3(0.0,0.0  ,-2.5) + t * 0.1 * qn.get_axis()
+	if t > 30.0 :
+		t = 0.0
 	#pass
