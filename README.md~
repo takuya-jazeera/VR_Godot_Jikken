@@ -13,6 +13,8 @@ Create a VR framework with Godot Engine.
     - How do I convert the raw values into quaternion? 
 + Some Spices 
     - Make Education resource not only for fun but for my job
+    - Check due-diligence before forking this project 
+
 
 # Note
 

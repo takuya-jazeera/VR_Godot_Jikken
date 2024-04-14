@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://beuygc2mv8n3k"]
+[gd_scene load_steps=10 format=3 uid="uid://beuygc2mv8n3k"]
 
 [ext_resource type="Script" path="res://MeshInstance3D.gd" id="1_3bxel"]
 [ext_resource type="Shader" path="res://Shaders/phong.gdshader" id="1_jeg8w"]
 [ext_resource type="PackedScene" uid="uid://dqhijge300446" path="res://Scenes/TextScroll.tscn" id="3_gr3bs"]
+[ext_resource type="PackedScene" uid="uid://b0tx8pjfkjkrs" path="res://Models/qubicle.glb" id="4_83u2h"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7ldiq"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -50,3 +51,6 @@ script = ExtResource("1_3bxel")
 
 [node name="Node3D" parent="." instance=ExtResource("3_gr3bs")]
 transform = Transform3D(1, 0, 0, 0, 0.930418, 0.366501, 0, -0.366501, 0.930418, 0, 0, -2.945)
+
+[node name="qubicle" parent="." instance=ExtResource("4_83u2h")]
+transform = Transform3D(-0.22961, 0, 0.559871, 0, 0.606, 0, -0.554328, 0, -0.231906, -1.217, -1.285, -5.072)
