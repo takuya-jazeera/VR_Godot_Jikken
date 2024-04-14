@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bx4phcteeknb0"]
 
-[ext_resource type="Script" path="res://Scenes/PostRender.gd" id="1_x02kn"]
-[ext_resource type="Shader" path="res://Scenes/PostRender.gdshader" id="2_scgpo"]
+[ext_resource type="Script" path="res://Scripts/PostRender.gd" id="1_x02kn"]
+[ext_resource type="Shader" path="res://PostRender.gdshader" id="2_scgpo"]
 [ext_resource type="PackedScene" uid="uid://beuygc2mv8n3k" path="res://Scenes/Main.tscn" id="3_owkpa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iwhuk"]
