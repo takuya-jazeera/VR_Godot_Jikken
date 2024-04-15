@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bx4phcteeknb0"]
+[gd_scene load_steps=7 format=3 uid="uid://bx4phcteeknb0"]
 
 [ext_resource type="Script" path="res://Scripts/PostRender.gd" id="1_x02kn"]
 [ext_resource type="Shader" path="res://PostRender.gdshader" id="2_scgpo"]
@@ -9,6 +9,9 @@ shader = ExtResource("2_scgpo")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dak7w"]
 shader = ExtResource("2_scgpo")
+
+[sub_resource type="LabelSettings" id="LabelSettings_h1nx1"]
+font_color = Color(0.184314, 0.658824, 0.611765, 1)
 
 [node name="PostRender" type="Node2D"]
 script = ExtResource("1_x02kn")
@@ -29,8 +32,6 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Main" parent="." instance=ExtResource("3_owkpa")]
-
 [node name="Label" type="Label" parent="."]
 offset_left = 11.0
 offset_top = 8.0
@@ -40,5 +41,28 @@ text = "1. 人間の目の距離は平均して62ミリ
 2. 上下キーでカメラをZ方向に移動
 3. デバッグにはステレオグラムの手法をとる
 4. 加速度センサーのしくみを勉強する"
+
+[node name="grav" type="Label" parent="."]
+offset_left = 84.0
+offset_top = 156.0
+offset_right = 124.0
+offset_bottom = 179.0
+label_settings = SubResource("LabelSettings_h1nx1")
+
+[node name="gyro" type="Label" parent="."]
+offset_left = 85.0
+offset_top = 198.0
+offset_right = 125.0
+offset_bottom = 221.0
+label_settings = SubResource("LabelSettings_h1nx1")
+
+[node name="Main" parent="." instance=ExtResource("3_owkpa")]
+
+[node name="theta" type="Label" parent="."]
+offset_left = 94.0
+offset_top = 278.0
+offset_right = 134.0
+offset_bottom = 301.0
+label_settings = SubResource("LabelSettings_h1nx1")
 
 [connection signal="draw" from="." to="." method="_on_draw"]

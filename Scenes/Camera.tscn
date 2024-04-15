@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dhievvg48cuhw"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="ViewL" type="SubViewport" parent="."]
+
+[node name="CL" type="Camera3D" parent="ViewL"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.031, 0, 0)
+top_level = true
+
+[node name="ViewR" type="SubViewport" parent="."]
+
+[node name="CR" type="Camera3D" parent="ViewR"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.031, 0, 0)
+top_level = true

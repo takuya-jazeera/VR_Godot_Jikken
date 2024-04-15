@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cyryrpckssl2p"
 path.s3tc="res://.godot/imported/qubicle_kouatsu.png-d00146d91c6a2178f75449d88a5639fd.s3tc.ctex"
+path.etc2="res://.godot/imported/qubicle_kouatsu.png-d00146d91c6a2178f75449d88a5639fd.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={}
@@ -13,7 +14,7 @@ generator_parameters={}
 [deps]
 
 source_file="res://Models/qubicle_kouatsu.png"
-dest_files=["res://.godot/imported/qubicle_kouatsu.png-d00146d91c6a2178f75449d88a5639fd.s3tc.ctex"]
+dest_files=["res://.godot/imported/qubicle_kouatsu.png-d00146d91c6a2178f75449d88a5639fd.s3tc.ctex", "res://.godot/imported/qubicle_kouatsu.png-d00146d91c6a2178f75449d88a5639fd.etc2.ctex"]
 
 [params]
 
