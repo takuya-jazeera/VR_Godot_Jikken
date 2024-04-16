@@ -8,9 +8,13 @@ extends Node2D
 @onready var debug_theta = $theta
 
 var theta = 0.0
+var phi = 0.0
+var cameras = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	cameras.append($Main/Camera/ViewL/CL)
+	cameras.append($Main/Camera/ViewR/CR)
 	pass 
 
 	
@@ -23,8 +27,14 @@ func _process(delta):
 	debug_gyro.text = str(gyro.x) + " " + str(gyro.y) + " " + str(gyro.z)
 	debug_gyro.text = str(gyro.x) + " " + str(gyro.y) + " " + str(gyro.z)	
 	theta-= gyro.y
-	$Main/Camera/ViewL/CL.quaternion = Quaternion(0.0,cos(theta*0.05),0.0,sin(theta*0.05))
-	$Main/Camera/ViewR/CR.quaternion = Quaternion(0.0,cos(theta*0.05),0.0,sin(theta*0.05))
+	phi += gyro.x
+	phi = clamp(phi, -PI * .5, PI * .5)
+	
+	var p = Quaternion(0.0,cos(theta*0.0125),0.0,sin(theta*0.05))
+	var q = Quaternion(cos(phi*0.0125),0.0,0.0,sin(phi*0.0125)) 
+	
+	for cam in cameras :
+		cam.quaternion = p * q
 
 
 func _on_draw():
