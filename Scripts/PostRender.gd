@@ -11,11 +11,14 @@ var theta = PI
 var phi = 0.0
 var psi = 0.0
 var cameras = []
+var bIsCalibrating = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	cameras.append($Main/Camera/ViewL/CL)
 	cameras.append($Main/Camera/ViewR/CR)
+	
+	panel.hide()
 	pass 
 
 	
@@ -23,21 +26,30 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var grav = Input.get_gravity()
-	debug_label.text = str(grav.x)  + " " + str(grav.y) + " " + str(grav.z)	
 	var gyro = Input.get_gyroscope()
+	debug_label.text = str(grav.x)  + " " + str(grav.y) + " " + str(grav.z)	
 	debug_gyro.text = str(gyro.x) + " " + str(gyro.y) + " " + str(gyro.z)
 	debug_gyro.text = str(gyro.x) + " " + str(gyro.y) + " " + str(gyro.z)	
-	theta -= gyro.y * 0.1
-	phi -= gyro.x * 0.1
-	phi = clamp(phi, -PI * .5, PI * .5)
-	psi -= gyro.z * 0.05
 	
-	var p = Quaternion(0.0,cos(theta*0.125 + PI * 0.5),0.0,sin(theta*0.125 + PI * 0.5))
-	var q = Quaternion(cos(phi*0.5 + PI * 0.5),0.0,0.0,sin(phi*0.5 + PI *0.5)) 
-	var r = Quaternion(0.0,0.0,cos(psi * 0.25 + PI * 0.25),sin(psi * 0.5 + PI * 0.5))
+	if bIsCalibrating :
+		$cal.show()
+		if grav.y < -9.6 && abs(grav.x) < 0.02:
+			bIsCalibrating = false
+			$cal.hide()
+			panel.show()
+	else :
+		theta -= gyro.y * 0.1
+		phi -= gyro.x * 0.1
+		phi = clamp(phi, -PI * .5, PI * .5)
+		psi += gyro.z * 0.02
+		psi = clamp(psi, -PI * .5, PI * .5)
 	
-	for cam in cameras :
-		cam.quaternion = p * r * q
+		var p = Quaternion(0.0,cos(theta*0.125 + PI * 0.5),0.0,sin(theta*0.125 + PI * 0.5))
+		var q = Quaternion(cos(phi*0.5 + PI * 0.5),0.0,0.0,sin(phi*0.5 + PI *0.5)) 
+		var r = Quaternion(0.0,0.0,cos(psi * 0.25 + PI * 0.5),sin(psi * 0.25 + PI * 0.5))
+	
+		for cam in cameras :
+			cam.quaternion = p * r * q
 
 
 func _on_draw():
