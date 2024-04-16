@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bx4phcteeknb0"]
 
 [ext_resource type="Script" path="res://Scripts/PostRender.gd" id="1_x02kn"]
-[ext_resource type="Shader" path="res://PostRender.gdshader" id="2_scgpo"]
+[ext_resource type="Shader" path="res://Shaders/PostRender.gdshader" id="2_scgpo"]
 [ext_resource type="PackedScene" uid="uid://beuygc2mv8n3k" path="res://Scenes/Main.tscn" id="3_owkpa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iwhuk"]
@@ -59,10 +59,10 @@ label_settings = SubResource("LabelSettings_h1nx1")
 [node name="Main" parent="." instance=ExtResource("3_owkpa")]
 
 [node name="theta" type="Label" parent="."]
-offset_left = 94.0
-offset_top = 278.0
-offset_right = 134.0
-offset_bottom = 301.0
+offset_left = 305.0
+offset_top = 18.0
+offset_right = 345.0
+offset_bottom = 41.0
 label_settings = SubResource("LabelSettings_h1nx1")
 
 [connection signal="draw" from="." to="." method="_on_draw"]
