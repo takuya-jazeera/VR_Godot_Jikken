@@ -26,12 +26,12 @@ func _process(delta):
 	var gyro = Input.get_gyroscope()
 	debug_gyro.text = str(gyro.x) + " " + str(gyro.y) + " " + str(gyro.z)
 	debug_gyro.text = str(gyro.x) + " " + str(gyro.y) + " " + str(gyro.z)	
-	theta-= gyro.y
-	phi += gyro.x
+	theta -= gyro.y * 0.1
+	phi -= gyro.x * 0.1
 	phi = clamp(phi, -PI * .5, PI * .5)
 	
-	var p = Quaternion(0.0,cos(theta*0.0125),0.0,sin(theta*0.05))
-	var q = Quaternion(cos(phi*0.0125),0.0,0.0,sin(phi*0.0125)) 
+	var p = Quaternion(0.0,cos(theta*0.125),0.0,sin(theta*0.125))
+	var q = Quaternion(cos(phi*0.5 + PI * 0.5),0.0,0.0,sin(phi*0.5 + PI *0.5)) 
 	
 	for cam in cameras :
 		cam.quaternion = p * q
