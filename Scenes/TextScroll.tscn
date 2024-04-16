@@ -1,13 +1,26 @@
-[gd_scene format=3 uid="uid://dqhijge300446"]
+[gd_scene load_steps=3 format=3 uid="uid://dqhijge300446"]
 
-[node name="Cam" type="Node3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hagtl"]
+albedo_color = Color(0.87451, 0.505882, 0.431373, 1)
+emission = Color(1, 0, 0, 1)
+backlight = Color(0.52549, 0, 0, 1)
 
-[node name="ViewL" type="SubViewport" parent="."]
+[sub_resource type="TextMesh" id="TextMesh_2rsn4"]
+material = SubResource("StandardMaterial3D_hagtl")
+text = "街中でこんな形の
+箱をみかけたら
+これは危険な電気を
+とりあつかっている設備
+なので絶対に近づかないで
+専門の資格をとったら
+今は職には困らなくなります"
+font_size = 10
+horizontal_alignment = 0
+line_spacing = 1.715
+depth = 0.03
+width = 498.18
 
-[node name="CL" type="Camera3D" parent="ViewL"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.031, 0, 0)
+[node name="Node3D" type="Node3D"]
 
-[node name="ViewR2" type="SubViewport" parent="."]
-
-[node name="CR" type="Camera3D" parent="ViewR2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.031, 0, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("TextMesh_2rsn4")
