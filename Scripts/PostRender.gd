@@ -13,6 +13,12 @@ var psi = 0.0
 var cameras = []
 var bIsCalibrating = true
 
+@onready var pre_rot = $Main/Camera.quaternion
+@onready var next_rot = pre_rot
+
+var interval = 0.0
+const interpoletime = 0.1
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	cameras.append($Main/Camera/ViewL/CL)
@@ -33,23 +39,32 @@ func _process(delta):
 	
 	if bIsCalibrating :
 		$cal.show()
-		if grav.y < -9.6 && abs(grav.x) < 0.02:
+		if grav.y < -9.76 && abs(grav.x) < 0.02:
 			bIsCalibrating = false
 			$cal.hide()
 			panel.show()
 	else :
+	
 		theta -= gyro.y * 0.1
 		phi -= gyro.x * 0.1
 		phi = clamp(phi, -PI * .5, PI * .5)
 		psi += gyro.z * 0.02
 		psi = clamp(psi, -PI * .5, PI * .5)
-	
-		var p = Quaternion(0.0,cos(theta*0.125 + PI * 0.5),0.0,sin(theta*0.125 + PI * 0.5))
-		var q = Quaternion(cos(phi*0.5 + PI * 0.5),0.0,0.0,sin(phi*0.5 + PI *0.5)) 
-		var r = Quaternion(0.0,0.0,cos(psi * 0.25 + PI * 0.5),sin(psi * 0.25 + PI * 0.5))
+		
+		interval += delta
+		if interval > interpoletime  :
+			interval = 0.0
+			pre_rot = next_rot
+			if grav.y < -9.7 :
+				next_rot = Quaternion(0.0,cos(theta*0.125 + PI * 0.5),0.0,sin(theta*0.125 + PI * 0.5))
+			else :
+				var p = Quaternion(0.0,cos(theta*0.125 + PI * 0.5),0.0,sin(theta*0.125 + PI * 0.5))
+				var q = Quaternion(cos(phi*0.5 + PI * 0.5),0.0,0.0,sin(phi*0.5 + PI *0.5)) 
+				var r = Quaternion(0.0,0.0,cos(psi * 0.25 + PI * 0.5),sin(psi * 0.25 + PI * 0.5))
+				next_rot = p * r * q
 	
 		for cam in cameras :
-			cam.quaternion = p * r * q
+			cam.quaternion = pre_rot.slerp(next_rot,interval/interpoletime)
 
 
 func _on_draw():
