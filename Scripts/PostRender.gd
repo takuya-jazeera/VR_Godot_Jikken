@@ -55,8 +55,10 @@ func _process(delta):
 		if interval > interpoletime  :
 			interval = 0.0
 			pre_rot = next_rot
-			if grav.y < -9.7 :
+			if grav.y < -9.75 :
 				next_rot = Quaternion(0.0,cos(theta*0.125 + PI * 0.5),0.0,sin(theta*0.125 + PI * 0.5))
+				phi = 0.0
+				psi = 0.0
 			else :
 				var p = Quaternion(0.0,cos(theta*0.125 + PI * 0.5),0.0,sin(theta*0.125 + PI * 0.5))
 				var q = Quaternion(cos(phi*0.5 + PI * 0.5),0.0,0.0,sin(phi*0.5 + PI *0.5)) 
