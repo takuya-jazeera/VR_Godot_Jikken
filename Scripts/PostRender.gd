@@ -11,13 +11,19 @@ var theta = PI
 var phi = 0.0
 var psi = 0.0
 var cameras = []
-var bIsCalibrating = true
+
+# pc
+var bIsCalibrating = false
+# android
+#var bIsCalibrating = true
+
+#var prev_mouse_position = Vector2i(0,0)
 
 @onready var pre_rot = $Main/Camera.quaternion
 @onready var next_rot = pre_rot
 
 var interval = 0.0
-const interpoletime = 0.1
+const interpoletime = 0.15
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,7 +31,10 @@ func _ready():
 	cameras.append($Main/Camera/ViewR/CR)
 	
 	panel.hide()
-	pass 
+	
+	# Disable Mouse ovelay
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	#pass 
 
 	
 
@@ -41,9 +50,10 @@ func _process(delta):
 		$cal.show()
 		if grav.y < -9.76 && abs(grav.x) < 0.02:
 			bIsCalibrating = false
-			$cal.hide()
-			panel.show()
 	else :
+		
+		$cal.hide()
+		panel.show()
 	
 		theta -= gyro.y * 0.1
 		phi -= gyro.x * 0.1
@@ -68,7 +78,33 @@ func _process(delta):
 		for cam in cameras :
 			cam.quaternion = pre_rot.slerp(next_rot,interval/interpoletime)
 
-
+		#var forward = Input.get_axis("ui_up","ui_down")
+		#var horizontal = Input.get_axis("ui_left","ui_right")
+		
+		
+		
+		var p = Quaternion(0.0,cos(theta*0.125 + PI * 0.5),0.0,sin(theta*0.125 + PI * 0.5))
+		var q = p * Quaternion(0.0,0.0,1.0,0.0) * p.inverse()
+		var r = p * Quaternion(1.0,0.0,0.0,0.0) * p.inverse()
+		
+		var mouse_position = Input.get_last_mouse_velocity()
+		mouse_position = mouse_position.normalized()
+		var forward = mouse_position.y
+		var horizontal = mouse_position.x
+		
+		#f Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) :
+		#forward = 1.0
+		#lse :
+		#forward = 0.0
+			
+		#get_viewport().update_mouse_cursor_state(Input.mouse) = get_window().size * 0.5
+		
+		for cam in cameras :
+			if abs(forward) :
+				cam.position += 0.05* q.get_axis() * forward
+			if abs(horizontal) :
+				cam.position += 0.05 *q.get_axis() * horizontal
+		
 func _on_draw():
 	panel.size = get_window().size
 	view_height = panel.size.y * 0.6
